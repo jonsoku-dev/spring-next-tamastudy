@@ -1,8 +1,12 @@
 import {combineReducers} from "redux";
-import cellsReducer from './cellsReducer'
+import cellsReducer, {CellsState} from './cellsReducer'
 import {HYDRATE} from "next-redux-wrapper";
 
-const reducers = (state: any, action: any) => {
+interface State {
+    cells: CellsState
+}
+
+const reducers = (state: State | undefined, action: any): State => {
     switch (action.type) {
         case HYDRATE:
             console.log('this is HYDRATE')
