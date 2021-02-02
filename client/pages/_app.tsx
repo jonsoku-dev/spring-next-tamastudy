@@ -1,9 +1,17 @@
-import React, {FC} from 'react'
-import {AppProps} from "next/app";
-import {wrapper} from "../state";
+import { AppProps } from 'next/app';
+import React, { FC } from 'react';
+import { SWRConfig } from 'swr';
 
-const App: FC<AppProps> = ({Component, pageProps}) => (
+import { wrapper } from '../state';
+import fetcher from '../utils/fetcher';
+
+const App: FC<AppProps> = ({ Component, pageProps }) => (
+  <SWRConfig
+    value={{
+      fetcher
+    }}>
     <Component {...pageProps} />
-)
+  </SWRConfig>
+);
 
 export default wrapper.withRedux(App);
